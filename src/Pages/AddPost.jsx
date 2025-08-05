@@ -1,4 +1,5 @@
 import { supabase } from "../client";
+import { useState } from "react";
 import "./AddPost.css";
 const AddPost = () => {
     const [post, setPost] = useState({title: "", content: "", image: "", votes: 0, comments: []});
@@ -27,8 +28,18 @@ const AddPost = () => {
     return (
         <>
             <br/>
+            <p><span className="asterisk-mandatory">*</span> required.</p>
             <form>
-                <label htmlFor="title">Enter a title for the post.<span>*</span></label>
+                <label htmlFor="title">Enter a title for the post. <span className="asterisk-mandatory">*</span></label> <br/>
+                <input type="text" id="title" name="title" onChange={handleChange} /> <br/> <br/>
+
+                <label htmlFor="content">Enter some text for your post.</label> <br/>
+                <input type="text" id="content" name="content" onChange={handleChange} /> <br/> <br/>
+
+                <label htmlFor="image">Enter an image link for the post.</label> <br/>
+                <input type="text" id="image" name="image" onChange={handleChange} /> <br/> <br/>
+
+                <input type="submit" value="Submit" onClick={createPost} disabled={post.title == ""} />
             </form>
         </>
     );
