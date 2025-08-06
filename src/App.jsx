@@ -6,6 +6,8 @@ import NoMatch from "./Pages/NoMatch.jsx";
 
 import AddPost from "./Pages/AddPost.jsx";
 import ViewPosts from "./Pages/ViewPosts.jsx";
+import PostInfo from "./Pages/PostInfo.jsx";
+import EditPost from "./Pages/EditPost.jsx";
 
 import './App.css';
 
@@ -18,9 +20,10 @@ function App() {
                         <Route index={true} element={<Home />}/>
                         <Route path="/view-posts" element={<ViewPosts />}/>
                         <Route path="/add-post" element={<AddPost />}/>
+                        <Route path="/post-info/:id" element={<PostInfo />}/>
+                        <Route path="/edit-post/:id" element={<EditPost />}/>
                         <Route path="*" element={<NoMatch />} />
                     </Route>
-                    
                 </Routes>
             </BrowserRouter>
         </>
