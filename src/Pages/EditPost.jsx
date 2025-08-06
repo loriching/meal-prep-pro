@@ -87,6 +87,7 @@ const EditPost = () => {
                 <input type="text" id="image" name="image" onChange={handleChange} /> <br/> <br/>
 
                 <input type="submit" value="Submit" onClick={updatePost} disabled={post.title==""} />
+                {post.title == "" && <p><span className="asterisk-mandatory">*</span> You must add a title to the post. <span className="asterisk-mandatory">*</span></p>}
             </form>
 
             <br/>

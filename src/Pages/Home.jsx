@@ -3,7 +3,7 @@ import "./Home.css";
 const Home = () => {
     return (
         <>
-            <h2>Home</h2>
+            <h1>Meal Prep Pro</h1>
 
             <p>Welcome to <span className="brand-name">Meal Prep Pro</span>, a forum where you <br/>can view and share posts about meal prep!</p>
         </>
