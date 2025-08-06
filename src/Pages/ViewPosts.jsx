@@ -55,12 +55,11 @@ const ViewPosts = () => {
             <input type="radio" id="descending" name="order" value="descending" onClick={handleOrder} />
             <label htmlFor="descending">Sort in descending order</label> <br/> <br/>
 
-            
-
             {posts && posts.length > 0 ? 
-            [...posts]
+            <div className="post-layout">
+            {[...posts]
             .map((p,index) =>
-                <div className="post-layout">
+                
                     <Post
                         key={p.id}
                         id={p.id}
@@ -71,7 +70,7 @@ const ViewPosts = () => {
                         votes={p.votes}
                         comments={p.comments}
                     />
-                </div>)
+                )} </div>
             : <h2>No Posts Yet</h2>}
         </>
     );
