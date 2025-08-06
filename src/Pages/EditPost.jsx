@@ -2,6 +2,7 @@ import { supabase } from "../client";
 import { useState, useEffect } from "react";
 import Post from "../Components/Post.jsx";
 import { useParams } from "react-router-dom";
+import "./AddPost.css";
 
 const EditPost = () => {
     const {id} = useParams();
@@ -23,7 +24,7 @@ const EditPost = () => {
             setPost({title: data.title, content: data.content, image: data.image, votes: data.votes, comments: data.comments});
         };
         currentPost().catch(console.error);
-    }, [id, post]);
+    }, [id]);
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -62,21 +63,21 @@ const EditPost = () => {
             <div>
                 <h2>Preview changes to current post:</h2>
 
-                <Post
-                        key={numericId}
-                        id={numericId}
-                        created_at={post.created_at}
-                        title={post.title}
-                        content={post.content}
-                        image={post.image}
-                        votes={post.votes}
-                        comments={post.comments}
-                    />
+                <h4>Title:</h4>
+                <p>{post.title}</p>
+
+                <h4>Content:</h4>
+                <p>{post.content}</p>
+
+                <h4>Image:</h4>
+                {(post.image && post.image.length > 0) && <img className="image-size" src={post.image}></img>}
+
             </div>
             <br/>
             
+            <p><span className="asterisk-mandatory">*</span> If you make changes to your post title but then delete <br/>the changes, please re-enter the previous post title.</p>
             <form>
-                <label htmlFor="title">Edit post title: </label> <br/>
+                <label htmlFor="title">Enter/edit post title: <span className="asterisk-mandatory">*</span></label> <br/>
                 <input type="text" id="title" name="title" onChange={handleChange} /> <br/> <br/>
 
                 <label htmlFor="content">Edit post content: </label> <br/>
@@ -85,7 +86,7 @@ const EditPost = () => {
                 <label htmlFor="image">Edit post image: </label> <br/>
                 <input type="text" id="image" name="image" onChange={handleChange} /> <br/> <br/>
 
-                <input type="submit" value="Submit" onClick={updatePost} />
+                <input type="submit" value="Submit" onClick={updatePost} disabled={post.title==""} />
             </form>
 
             <br/>
